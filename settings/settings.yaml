@@ -1,0 +1,58 @@
+# Параметры OPC UA
+opcua_server:
+    url: opc.tcp://opcua.demo-this.com:51210/ua/sampleserver #opc.tcp://milo.digitalpetri.com:62541/milo
+    username: # admin
+    password: # YWRtaW4=   admin
+    period_subsription: 500
+    timeshift: 0
+    block:
+        "01":
+            frequency:
+                node_id:
+                    - 'ns=2;i=10845'#ns=2;s=Dynamic/RandomFloat
+                    - 
+                range:
+                    min: -80
+                    max: 80
+            power:
+                node_id:
+                    - 'ns=2;i=10846'
+                    - #ns=2;s=Dynamic/RandomDouble 
+                range:
+                    min: 50
+                    max: 200
+            target_power:
+                node_id:
+                    - #ns=2;s=Dynamic/RandomInt32
+                    - 'ns=2;i=11170'
+                range:
+                    min: -80
+                    max: 80
+            quality:
+                node_id:
+                    - 'ns=2;i=11176'
+                    -
+                range:
+                    min: 50
+                    max: 200
+
+
+
+# Параметры INFLUXDB
+influxdb:
+    host: localhost
+    port: 8086
+    username: #manjaro
+    password: #R3RuaGpkZjE=  # Gtnhjdf1
+    mydb: sync
+
+# Параметры архивного хранилища
+syncreport:
+    timeshift: 0
+    filestorige:
+        path: "./data" # or "C:/Users/SNikolaev/.spyder-py3/practice/SyncOPCUAClient/data" (check slash)
+    sequence:
+        - frequency
+        - power
+        - target_power
+        - quality
